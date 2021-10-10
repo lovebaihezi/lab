@@ -1,0 +1,59 @@
+This is TeX, Version 3.141592653 (TeX Live 2021/Arch Linux) (preloaded format=tex 2021.10.7)  7 OCT 2021 21:22
+**\nonstopmode\input main.lex
+(./main.lex
+! Undefined control sequence.
+l.1 \documentclass
+                  {article}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.2 \begin
+          {document}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.3 \section
+            {`^^e5^^9b^^be^^e5^^83^^8f^^e8^^be^^b9^^e7^^bc^^98^^e6^^a3^^80^^...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no ^^e5 in font cmr10!
+Missing character: There is no ^^9b in font cmr10!
+Missing character: There is no ^^be in font cmr10!
+Missing character: There is no ^^e5 in font cmr10!
+Missing character: There is no ^^83 in font cmr10!
+Missing character: There is no ^^8f in font cmr10!
+Missing character: There is no ^^e8 in font cmr10!
+Missing character: There is no ^^be in font cmr10!
+Missing character: There is no ^^b9 in font cmr10!
+Missing character: There is no ^^e7 in font cmr10!
+Missing character: There is no ^^bc in font cmr10!
+Missing character: There is no ^^98 in font cmr10!
+Missing character: There is no ^^e6 in font cmr10!
+Missing character: There is no ^^a3 in font cmr10!
+Missing character: There is no ^^80 in font cmr10!
+Missing character: There is no ^^e6 in font cmr10!
+Missing character: There is no ^^b5 in font cmr10!
+Missing character: There is no ^^8b in font cmr10!
+Missing character: There is no ^^e5 in font cmr10!
+Missing character: There is no ^^92 in font cmr10!
+Missing character: There is no ^^8c in font cmr10!
+Missing character: There is no ^^e7 in font cmr10!
+Missing character: There is no ^^ae in font cmr10!
+Missing character: There is no ^^97 in font cmr10!
+Missing character: There is no ^^e5 in font cmr10!
+Missing character: There is no ^^ad in font cmr10!
+Missing character: There is no ^^90 in font cmr10!
+[1] )
+Output written on main.dvi (1 page, 248 bytes).
