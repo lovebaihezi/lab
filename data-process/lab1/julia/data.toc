@@ -1,0 +1,7 @@
+\babel@toc {UKenglish}{}
+\contentsline {section}{\numberline {1}概述}{4}{section.1}%
+\contentsline {section}{\numberline {2}数据可视化}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}实验过程}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}实验结果和分析}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}PTX与x86指令的比较}{6}{section.3}%
+\contentsline {section}{\numberline {A}代码}{6}{appendix.A}%
