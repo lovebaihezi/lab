@@ -2,6 +2,13 @@
 \contentsline {section}{\numberline {1}概述}{4}{section.1}%
 \contentsline {section}{\numberline {2}数据可视化}{5}{section.2}%
 \contentsline {subsection}{\numberline {2.1}实验过程}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}实验结果和分析}{5}{subsection.2.2}%
-\contentsline {section}{\numberline {3}PTX与x86指令的比较}{6}{section.3}%
-\contentsline {section}{\numberline {A}代码}{6}{appendix.A}%
+\contentsline {subsection}{\numberline {2.2}实验结果和分析}{7}{subsection.2.2}%
+\contentsline {section}{\numberline {3}数据处理}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}实验过程}{8}{subsection.3.1}%
+\contentsline {section}{\numberline {4}数据预处理}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}实验过程}{9}{subsection.4.1}%
+\contentsline {section}{\numberline {5}数据合并}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}实验过程}{10}{subsection.5.1}%
+\contentsline {section}{\numberline {6}PCA}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}实验过程}{11}{subsection.6.1}%
+\contentsline {section}{\numberline {A}代码}{12}{appendix.A}%

@@ -9,6 +9,10 @@
 
 \graphicspath{ {images/} }
 \usepackage{ctex}
+\usepackage{fontspec}
+\setmonofont[
+  Contextuals={Alternate}
+]{Fira Code}
 %-----------------------------------------BEGIN DOC----------------------------------------
 
 \begin{document}
@@ -39,6 +43,12 @@
 {\Large\bf{摘\ 要\\}}
 \end{center}
 本次实验使用Julia语言进行实现.
+
+如果需要运行本项目代码,请安装python以及matplot
+
+随后打开终端,运行Julia
+
+安装XLSX,CSV,DataFrames,Plots,Dates,Statistics
 
 实验报告采用LaTeX, 在overleaf上进行编写.
 
@@ -82,39 +92,114 @@
 \section{数据可视化}\label{sub:ptx}
 \subsection{实验过程} \label{sub:ptxproc}
 
-首先讲旧版Excel格式的xls文件转换为CSV文件\href{"https://github.com/lovebaihezi/lab/blob/main/data-process/lab1/julia/file/xian_guangdian.csv"}{github}
+首先使用Excel讲旧版Excel格式的xls文件转换为CSV文件\href{"https://github.com/lovebaihezi/lab/blob/main/data-process/lab1/julia/file/xian_guangdian.csv"}{github}
 
-随后使用CSV读取文件内容, 并通过DataFrame解析格式以及类型
-
-随后将数据根据客户等级进行分组,总共有
-
-\begin{lstlisting}[language=julia]
-    function free()
-        file_path = "lab1/julia/file/xian_guangdian.csv"
-        data = file_path |> CSV.File |> DataFrame
-        data = groupby(select(data, "客户等级")
-        quality = combine(nrow, , "客户等级"))
-        StatsPlots.bar(quality[!, 1], quality[!, 2], label = "count")
-    end
-\end{lstlisting}
-
-图\ref{fig:singleblock}. 
+随后使用CSV读取文件内容, 并通过DataFrame解析格式以及类型图\ref{fig:csvinfo}. 
 
 \begin{figure}[ht]
  \centering
- \includegraphics[height=12cm]{images/广电信息CSV展示.png}
- \caption{广电信息图}
- \label{fig:singleblock}
+ \includegraphics[width=5cm]{images/广电信息CSV展示.png}
+ \caption{广电信息CSV}
+ \label{fig:csvinfo}
+\end{figure}
+
+\begin{lstlisting}[language=julia]
+quality =
+    "lab1/julia/file/xian_guangdian.csv" |>
+    CSV.File |>
+    DataFrame |>
+    data ->
+        begin
+            combine(nrow, groupby(select(data, :客户等级), :客户等级)) |>
+            data -> rename(data, :nrow => "用户数量") |> println
+            combine(nrow, groupby(select(data, [:客户等级, :网络类型]), 
+                                                [:客户等级, :网络类型]))
+        end |>
+        data ->
+            rename(data, 
+                :nrow => :quantity, 
+                    :网络类型 => :net_kind, 
+                        :客户等级 => :user_level)
+data = combine(groupby(quality, :net_kind), [:user_level, :quantity])
+dict = Dict(
+    "5星ABD客户" => "star_5ABD",
+    "离线" => "out_link",
+    "3星AB客户" => "star_3AB",
+    "1星D客户" => "star_1D",
+    "1星A客户" => "star_1A",
+    "VIP商业个人客户" => "vip",
+    "3星AD客户" => "start_3AD",
+)
+1:(data|>nrow) .|>
+i -> begin
+    data[i, :net_kind] =
+        Dict(
+            "农网用户" => "village", 
+            "城网用户" => "city",
+            " " => "unknown"
+        )[data[
+            i,
+            :net_kind,
+        ]]
+    data[i, :user_level] = dict[data[i, :user_level]]
+end
+gp = groupby(data, :net_kind)
+gp |>
+keys .|>
+kind -> @df combine(gp[kind], [:user_level, :quantity]) plot(
+    :user_level,
+    :quantity,
+    label = "$kind",
+) |> fig -> savefig(fig, "lab1/julia/images/first_$kind")
+\end{lstlisting}
+
+随后将数据根据客户等级进行分组,总共有7组,见图\ref{fig:customgroup}. 
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=5cm]{images/广电客户.png}
+ \caption{分组结果图}
+ \label{fig:customgroup}
+\end{figure}
+
+再将每组一网络类型进行分组, 图\ref{fig:netgroup}. 
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=5cm]{images/网络分组.png}
+ \caption{分组结果图}
+ \label{fig:netgroup}
+\end{figure}
+
+然后将每组画到折线图之上,
+\begin{figure}
+    \centering
+    \includegraphics[width=3cm]{images/city.png}
+    \label{fig:city}
+    \includegraphics[width=3cm]{images/village.png}
+    \label{fig:village}
+    \includegraphics[width=3cm]{images/unknown.png}
+    \caption{城市居民, 农村, 未登记}
+    \label{fig:unknown}
 \end{figure}
 
 \subsection{实验结果和分析}\label{sub:ptxeva}
-我们可以从终端中看到结果:
-城市用户:2968
-农村用户:2026
-同时可以从图像上看出办理宽带的城市用户多余农村用户
+
+通过该次结果可以看出,在办理了广电业务的客户之中,5星ABD客户数目远远多余其他客户,而且明显城区用户多余农村用户
+
+但是低级用户和高级用户的数量几乎差不多,而且最关键的是两个图的趋势是相似的,说明农村和城市对于网络的需求是很一致的
+
+\newpage
+
 % --------------------------------Evaluation----------------------------------------
-\section{PTX与x86指令的比较}\label{ptxvsx86}
-以下请按照上面的说明示例，自行安排章节内容。
+\section{数据处理}\label{sub:process}
+\subsection{实验过程} \label{sub:process-lab}
+
+使用XLSX将文件内容读入,并使用DataFrame对数据进行类型判断并转换位DataFrame类型
+随后使用统计模块中的统计方法求数据的均值,方差,标准差,协方差矩阵
+
+\begin{lstlisting}[language=julia]
+\end{lstlisting}
+
 
 % -----------------------------------Appendix----------------------------------------
 \appendix
@@ -133,14 +218,6 @@ using PyPlot;
 file_path = "file/xian_guangdian.csv";
 data = CSV.File(file_path) |> DataFrame
 
-
 \end{lstlisting}
-\newpage
-% -----------------------------------REFERENCE----------------------------------------
-\begin{thebibliography}{9}
-\bibitem{Erdos01} P. Erd\H os, \emph{A selection of problems and
-results in combinatorics}, Recent trends in combinatorics (Matrahaza,
-1995), Cambridge Univ. Press, Cambridge, 2001, pp. 1--6.
-\end{thebibliography}
 \end{document}
 
