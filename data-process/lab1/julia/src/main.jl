@@ -6,6 +6,8 @@ using Plots;
 using Dates;
 using Statistics;
 using StatsPlots
+import PyPlot;
+using LinearAlgebra
 
 function free()
     quality =
@@ -60,16 +62,59 @@ function draw_plot()
     println("cov:$(salary |> Statistics.cov)")
     println("cor:$(salary .|> Statistics.cor)")
 
-    violin(["Xi'an"], salarys.x1, label = "Xi'an");
-    violin!(["Beijing"], salarys.x2, label = "Beijing")|> fig -> savefig(fig, "lab1/julia/images/violin")
-    boxplot(["Xi'an"], salarys.x1, label = "Xi'an");
-    boxplot!(["Beijing"], salarys.x2, label = "Beijing") |> fig -> savefig(fig, "lab1/julia/images/box")
+    violin(["Xi'an"], salarys.x1, label = "Xi'an")
+    violin!(["Beijing"], salarys.x2, label = "Beijing") |>
+    fig -> savefig(fig, "lab1/julia/images/violin")
+    boxplot(["Xi'an"], salarys.x1, label = "Xi'an")
+    boxplot!(["Beijing"], salarys.x2, label = "Beijing") |>
+    fig -> savefig(fig, "lab1/julia/images/box")
 
 end
 
-function map_filter()
+function map_transform()
     file_path = "lab1/julia/file/3movie_metadata.csv"
     movie_metadata = file_path |> CSV.File |> DataFrame
+    dropmissing!(movie_metadata, :director_name)
+    dict = Dict(
+        :color => "Color",
+        :num_critic_for_reviews => 0,
+        :duration => 0,
+        :director_facebook_likes => 0,
+        :actor_3_facebook_likes => 0,
+        :actor_2_name => "",
+        :actor_1_facebook_likes => 0,
+        :gross => 0,
+        :genres => "",
+        :actor_1_name => "",
+        :movie_title => "",
+        :num_voted_users => 0,
+        :cast_total_facebook_likes => 0,
+        :actor_3_name => "",
+        :facenumber_in_poster => 0,
+        :plot_keywords => "",
+        :movie_imdb_link => "",
+        :num_user_for_reviews => 0,
+        :language => "",
+        :country => "",
+        :content_rating => 0,
+        :budget => 0,
+        :title_year => 0,
+        :actor_2_facebook_likes => 0,
+        :imdb_score => 0,
+        :aspect_ratio => 0,
+        :movie_facebook_likes => 0,
+    )
+    dict |>
+    keys .|>
+    key -> transform!(
+        movie_metadata,
+        :,
+        key => (col -> col .|> each -> if ismissing(each)
+            Dict[key]
+        else
+            each
+        end) => key,
+    )
 end
 
 function join_compine()
@@ -86,4 +131,62 @@ function join_compine()
     end
 end
 
-function self_pca() end
+function self_pca()
+    mat = "lab1/julia/file/5iris.csv" |> CSV.File |> DataFrame
+    gp = groupby(mat, :Species)
+    names = [:Sepal_length, :Sepal_width, :Petal_length, :Petal_width, :Species]
+    @df gp[1] plot(
+        :Sepal_length,
+        :Sepal_width,
+        :Petal_length,
+        zcolor = reverse(:Petal_width),
+        m = (10, 0.8, :blues, Plots.stroke(0)),
+        fontfamily = "Yahei",
+        xlabel = "Sepal_length",
+        ylabel = "Sepal_width",
+        zlabel = "Petal_length",
+        title = "山鸢尾",
+        label = "山鸢尾",
+        w = 0,
+    )
+    @df gp[2] plot(
+        :Sepal_length,
+        :Sepal_width,
+        :Petal_length,
+        zcolor = reverse(:Petal_width),
+        m = (10, 0.8, :blues, Plots.stroke(0)),
+        fontfamily = "Yahei",
+        xlabel = "Sepal_length",
+        ylabel = "Sepal_width",
+        zlabel = "Petal_length",
+        title = "变色鸢尾",
+        label = "变色鸢尾",
+        w = 0,
+    )
+    @df gp[3] plot(
+        :Sepal_length,
+        :Sepal_width,
+        :Petal_length,
+        zcolor = reverse(:Petal_width),
+        m = (10, 0.8, :blues, Plots.stroke(0)),
+        fontfamily = "Yahei",
+        xlabel = "Sepal_length",
+        ylabel = "Sepal_width",
+        zlabel = "Petal_length",
+        title = "维吉尼亚鸢尾",
+        label = "维吉尼亚鸢尾",
+        w = 0,
+    )
+    data = copy(mat)
+    data = select!(data, Not([:Species])) |> Matrix 
+    (values, vectors) = data |> Statistics.cov |> eigen
+    # sortperm 会将元素从小到大排序
+    p = last(sortperm(values), 2) |> x -> vectors[:, x]
+    data * p
+end
+
+free();
+draw_plot();
+map_transform();
+join_compine();
+self_pca();

@@ -10,6 +10,7 @@
 \graphicspath{ {images/} }
 \usepackage{ctex}
 \usepackage{fontspec}
+% \usepackage[clean]{svg}
 \setmonofont[
   Contextuals={Alternate}
 ]{Fira Code}
@@ -76,13 +77,13 @@
 3、掌握PCA主成分分析等降维方法
 
 \begin{itemize}
-	\item{\textbf{数据可视化}对某县广电宽带用户的5000条数据（或者自己感兴趣的其他领域的数据）进行探索，通过统计特征可视化进行数据分析，探索发现你感兴趣的知识。}
-    \item{\textbf{数据处理}对北京西安的年薪数据（或者自己感兴趣的其他领域的数据）计算均值，方差等统计特征，绘制据箱体图和小提琴图等图，分析北京西安年薪的差异。}
-    \item{\textbf{数据清洗}用'movie\_metadata.csv'数据集（或者自己感兴趣的其他领域的数据）进行案例分析，这个数据集包含了包括演员、导演、预算、总输入，以及IMDB评分和上映时间等信息，进行处理缺失数据，可以是添加默认值，删除不完整的行，异常值处理，重复数据处理，规范化数据类型等等。
+	\item{\textbf{数据可视化}对某县广电宽带用户的5000条数据(或者自己感兴趣的其他领域的数据)进行探索，通过统计特征可视化进行数据分析，探索发现你感兴趣的知识。}
+    \item{\textbf{数据处理}对北京西安的年薪数据(或者自己感兴趣的其他领域的数据)计算均值，方差等统计特征，绘制据箱体图和小提琴图等图，分析北京西安年薪的差异。}
+    \item{\textbf{数据清洗}用'movie\_metadata.csv'数据集(或者自己感兴趣的其他领域的数据)进行案例分析，这个数据集包含了包括演员、导演、预算、总输入，以及IMDB评分和上映时间等信息，进行处理缺失数据，可以是添加默认值，删除不完整的行，异常值处理，重复数据处理，规范化数据类型等等。
     }
-    \item{\textbf{数据集成}合并两个给定数据集：ReaderRentRecode.csv和ReaderInformation.csv（或者自己感兴趣的其他领域的数据），其中两个数据集的共同点是具有相同的num属性，最终生成一个综合的数据集。
+    \item{\textbf{数据集成}合并两个给定数据集：ReaderRentRecode.csv和ReaderInformation.csv(或者自己感兴趣的其他领域的数据)，其中两个数据集的共同点是具有相同的num属性，最终生成一个综合的数据集。
     }
-    \item{\textbf{PCA}使用鸢尾花数据集（或者自己感兴趣的其他领域的数据），这个数据集有150个样本，其中每个样本有五个变量，其中四个为特征变量,分别为萼片长度（Sepal length）, 萼片宽度（Sepalwidth）,花瓣长度（Petallength）,花瓣宽度（Petalwidth），还有一个变量是其所属的品种的类别变量（Species），这个鸢尾花内别共有3种类别分别是山鸢尾（Iris-setosa）、变色鸢尾（Iris-versicolor）和维吉尼亚鸢尾（Iris-virginica），首先对4维的原始数据集实现可视化，可视化一组数据来观察数据分布，然后对数据集进行标准化（归一化），接着利用PCA主成分分析将数据降到二维。}
+    \item{\textbf{PCA}使用鸢尾花数据集(或者自己感兴趣的其他领域的数据)，这个数据集有150个样本，其中每个样本有五个变量，其中四个为特征变量,分别为萼片长度(Sepal length), 萼片宽度(Sepalwidth),花瓣长度(Petallength),花瓣宽度(Petalwidth)，还有一个变量是其所属的品种的类别变量(Species)，这个鸢尾花内别共有3种类别分别是山鸢尾(Iris-setosa)、变色鸢尾(Iris-versicolor)和维吉尼亚鸢尾(Iris-virginica)，首先对4维的原始数据集实现可视化，可视化一组数据来观察数据分布，然后对数据集进行标准化(归一化)，接着利用PCA主成分分析将数据降到二维。}
 \end{itemize}
 
 %------------------------------------Lab Process--------------------------------------
@@ -90,7 +91,7 @@
 \newpage
 %------------------------------
 \section{数据可视化}\label{sub:ptx}
-\subsection{实验过程} \label{sub:ptxproc}
+\subsection{解析文件} \label{sub:ptxproc}
 
 首先使用Excel讲旧版Excel格式的xls文件转换为CSV文件\href{"https://github.com/lovebaihezi/lab/blob/main/data-process/lab1/julia/file/xian_guangdian.csv"}{github}
 
@@ -153,6 +154,8 @@ kind -> @df combine(gp[kind], [:user_level, :quantity]) plot(
 ) |> fig -> savefig(fig, "lab1/julia/images/first_$kind")
 \end{lstlisting}
 
+\subsection{分组} \label{sub:group-1}
+
 随后将数据根据客户等级进行分组,总共有7组,见图\ref{fig:customgroup}. 
 \begin{figure}[ht]
  \centering
@@ -170,6 +173,8 @@ kind -> @df combine(gp[kind], [:user_level, :quantity]) plot(
  \label{fig:netgroup}
 \end{figure}
 
+\subsection{绘制折线图} \label{sub:draw}
+
 然后将每组画到折线图之上, 图\ref{fig:city}
 \begin{figure}
     \centering
@@ -180,7 +185,7 @@ kind -> @df combine(gp[kind], [:user_level, :quantity]) plot(
     \label{fig:city}
 \end{figure}
 
-\subsection{实验结果和分析}\label{sub:ptxeva}
+\subsection{分析数据}\label{sub:ptxeva}
 
 通过该次结果可以看出,在办理了广电业务的客户之中,5星ABD客户数目远远多余其他客户,而且明显城区用户多余农村用户
 
@@ -190,7 +195,7 @@ kind -> @df combine(gp[kind], [:user_level, :quantity]) plot(
 
 % --------------------------------Evaluation----------------------------------------
 \section{数据处理}\label{sub:process}
-\subsection{实验过程} \label{sub:process-lab}
+\subsection{求的统计数据} \label{sub:process-lab}
 
 使用XLSX将文件内容读入,并使用DataFrame对数据进行类型判断并转换位DataFrame类型
 随后使用统计模块中的统计方法求数据的均值,方差,标准差,协方差矩阵,图\ref{fig:mean}
@@ -217,7 +222,7 @@ boxplot!(["Beijing"], salarys.x2, label = "Beijing")
     \caption{均值, 方差, 标准差, 协方差}
     \label{fig:mean}
 \end{figure}
-
+\subsection{绘制箱型图和小提琴图} \label{sub:violin-box}
 \begin{figure}[h]
     \centering
     \includegraphics[width=6cm]{images/box.png}
@@ -229,7 +234,75 @@ boxplot!(["Beijing"], salarys.x2, label = "Beijing")
 \newpage
 
 \section{数据预处理}\label{sub:pre_process}
-\subsection{实验过程} \label{sub:pre_process-lab}
+\subsection{去除丢失数据行} \label{sub:pre_process-lab}
+
+在读取完数据后,通过DataFrame转换之后
+
+可以通过DataFrame得知
+每一列都会有值是丢失的:图\ref{fig:movie_metadata}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=12cm]{movie-metadata.png}
+    \caption{电影元数据}
+    \label{fig:movie_metadata}
+\end{figure}
+
+为了将来数据处理的正常话,这里将导演空的一栏都去掉
+\subsection{默认值替换} \label{sub:default-data}
+同时其他的值变为其默认值
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ |c|c| }
+名称 & 默认值 \\\hline
+color & Color \\ 
+num critic for reviews & 0 \\ 
+duration & 0 \\ 
+director facebook likes & 0 \\ 
+actor 3 facebook likes & 0 \\ 
+actor 2 name & \ \\ 
+actor 1 facebook likes & 0 \\ 
+gross & 0 \\ 
+genres & \ \\ 
+actor 1 name & \ \\ 
+movie title &   \\ 
+num voted users & 0 \\ 
+cast total facebook likes & 0 \\ 
+actor 3 name &  \\
+facenumber in poster & 0 \\ 
+plot keywords &  \\ 
+movie imdb link &  \\ 
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ |c|c| }
+num user for reviews & 0 \\ 
+language &  \\ 
+country &  \\ 
+content rating & PG-0 \\ 
+budget & 0 \\ 
+title year & 0 \\ 
+actor 2 facebook likes & 0 \\ 
+imdb score & 0 \\ 
+aspect ratio & 0 \\ 
+movie facebook likes & 0 \\ 
+\end{tabular}
+\end{table}
+
+于是就对每一列进行一次变化:如果每一行的数据是missing,就将其替换为默认值,见图\ref{fig:missing}
+
+\begin{figure}[h]
+    \label{fig:missing}
+    \centering
+    \includegraphics[width=12cm]{去除导演missing的行.png}
+    \includegraphics[width=12cm]{处理missing.png}
+    \caption{处理missing}
+\end{figure}
 
 \begin{lstlisting}[language=julia]
 \end{lstlisting}
@@ -237,9 +310,16 @@ boxplot!(["Beijing"], salarys.x2, label = "Beijing")
 \newpage
 
 \section{数据合并}\label{sub:data_join}
-\subsection{实验过程} \label{sub:data_join-lab}
+\subsection{通过join进行合并} \label{sub:data_join-lab}
 
 读取数据表,通过join表上的num列对两张表进行合并,图\ref{fig:combine}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=12cm]{images/合并.png}
+    \caption{数据合并}
+    \label{fig:combine}
+\end{figure}
 
 \begin{lstlisting}[language=julia]
 ["lab1/julia/file/4ReaderInformation.csv",
@@ -256,37 +336,256 @@ dates -> begin
 end
 \end{lstlisting}
 
-\begin{figure}[h]
+\newpage
+
+\section{PCA}\label{sub:PCA}
+\subsection{绘制四维图像} \label{sub:plot}
+可视化四维数据,我对数据依据种类进行了分组,对每组进行了绘图
+
+其中横轴,数轴,纵轴,颜色分别代表:萼片长度(Sepal length), 萼片宽度(Sepalwidth),花瓣长度(Petallength),花瓣宽度(Petalwidth)
+
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=6cm]{images/合并.png}
-    \caption{数据合并}
-    \label{fig:combine}
+    \includegraphics[height=5cm]{山鸢尾花.png}
+    \includegraphics[height=5cm]{变色鸢尾花.png}
+    \includegraphics[height=5cm]{维吉尼亚鸢尾花.png}
+    \caption{山鸢尾花,变色鸢尾花,维吉尼亚鸢尾花}
 \end{figure}
 
 \newpage
 
-\section{PCA}\label{sub:PCA}
-\subsection{实验过程} \label{sub:PCA-lab}
+\subsection{实现PCA} \label{sub:PCA-}
+
+PCA实现步骤
+
+首先是算法思路
+设有 $n$ 条 $d$ 维数据。
+\begin{enumerate}
+    \item 将原始数据按列组成 $n$ 行 $d$ 列矩阵 $X$
+    \item 将 $X$ 的每一列(代表一个属性)进行零均值化，即减去这一列的均值
+    \item 求出协方差矩阵 $\frac{1}{m}XX^T$
+    \item 求出协方差矩阵的特征值及对应的特征向量
+    \item 将特征向量按对应特征值大小从上到下按行排列成矩阵，取前 $k$ 行组成矩阵 $P$
+    \item $Y=PX$ 即为降维到 $k$ 维后的数据
+\end{enumerate}
+
+\begin{lstlisting}[language=julia]
+
+    data = copy(mat)
+    data = select!(data, Not([:Species])) |> Matrix 
+    (values, vectors) = data |> Statistics.cov |> eigen
+    p = last(sortperm(values), 2) |> x -> vectors[:, x]
+    data * p
+
+\end{lstlisting}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics{matrix.png}
+    \caption{PCA结果}
+    \label{fig:matrix}
+\end{figure}
+
+结果:图\ref{fig:matrix}
 
 \newpage
 
 % -----------------------------------Appendix----------------------------------------
 \appendix
-\section{代码}\label{sub:app.code}
-请在附录\ref{sub:app.code}中添加代码。请使用如下C或者C++的语法高亮描述方法。
+\section{代码}
+
 \begin{lstlisting}[language=julia]
-
-using XLSX;
-using CSV;
-using DataFrames;
-using Plots;
-using Dates;
-using StatsPlots;
-using PyPlot;
-
-file_path = "file/xian_guangdian.csv";
-data = CSV.File(file_path) |> DataFrame
-
+    using XLSX;
+    using CSV;
+    using DataFrames;
+    using Plots;
+    using Dates;
+    using Statistics;
+    using StatsPlots
+    import PyPlot;
+    using LinearAlgebra
+    
+    function free()
+        quality =
+            "lab1/julia/file/xian_guangdian.csv" |>
+            CSV.File |>
+            DataFrame |>
+            data ->
+                begin
+                    combine(nrow, groupby(select(data, :客户等级), :客户等级)) |>
+                    data -> rename(data, :nrow => "用户数量") |> println
+                    combine(nrow, groupby(select(data, [:客户等级, :网络类型]), [:客户等级, :网络类型]))
+                end |>
+                data ->
+                    rename(data, :nrow => :quantity, :网络类型 => :net_kind, :客户等级 => :user_level)
+        data = combine(groupby(quality, :net_kind), [:user_level, :quantity])
+        dict = Dict(
+            "5星ABD客户" => "star_5ABD",
+            "离线" => "out_link",
+            "3星AB客户" => "star_3AB",
+            "1星D客户" => "star_1D",
+            "1星A客户" => "star_1A",
+            "VIP商业个人客户" => "vip",
+            "3星AD客户" => "start_3AD",
+        )
+        1:(data|>nrow) .|>
+        i -> begin
+            data[i, :net_kind] =
+                Dict("农网用户" => "village", "城网用户" => "city", " " => "unknown")[data[
+                    i,
+                    :net_kind,
+                ]]
+            data[i, :user_level] = dict[data[i, :user_level]]
+        end
+        gp = groupby(data, :net_kind)
+        gp |>
+        keys .|>
+        kind -> @df combine(gp[kind], [:user_level, :quantity]) plot(
+            :user_level,
+            :quantity,
+            label = "$kind",
+        ) |> fig -> savefig(fig, "lab1/julia/images/first_$kind")
+    end
+    
+    function draw_plot()
+        file_path = "lab1/julia/file/xian_beijing_salary.xlsx"
+        salarys = DataFrame(XLSX.readdata(file_path, "Sheet1!C3:D14"), :auto) .|> identity
+        salary = [salarys.x1, salarys.x2]
+    
+        println("mean:$(salary .|> Statistics.mean)")
+        println("var:$(salary .|> Statistics.var)")
+        println("std:$(salary .|> Statistics.std)")
+        println("cov:$(salary |> Statistics.cov)")
+        println("cor:$(salary .|> Statistics.cor)")
+    
+        violin(["Xi'an"], salarys.x1, label = "Xi'an")
+        violin!(["Beijing"], salarys.x2, label = "Beijing") |>
+        fig -> savefig(fig, "lab1/julia/images/violin")
+        boxplot(["Xi'an"], salarys.x1, label = "Xi'an")
+        boxplot!(["Beijing"], salarys.x2, label = "Beijing") |>
+        fig -> savefig(fig, "lab1/julia/images/box")
+    
+    end
+    
+    function map_transform()
+        file_path = "lab1/julia/file/3movie_metadata.csv"
+        movie_metadata = file_path |> CSV.File |> DataFrame
+        dropmissing!(movie_metadata, :director_name)
+        dict = Dict(
+            :color => "Color",
+            :num_critic_for_reviews => 0,
+            :duration => 0,
+            :director_facebook_likes => 0,
+            :actor_3_facebook_likes => 0,
+            :actor_2_name => "",
+            :actor_1_facebook_likes => 0,
+            :gross => 0,
+            :genres => "",
+            :actor_1_name => "",
+            :movie_title => "",
+            :num_voted_users => 0,
+            :cast_total_facebook_likes => 0,
+            :actor_3_name => "",
+            :facenumber_in_poster => 0,
+            :plot_keywords => "",
+            :movie_imdb_link => "",
+            :num_user_for_reviews => 0,
+            :language => "",
+            :country => "",
+            :content_rating => 0,
+            :budget => 0,
+            :title_year => 0,
+            :actor_2_facebook_likes => 0,
+            :imdb_score => 0,
+            :aspect_ratio => 0,
+            :movie_facebook_likes => 0,
+        )
+        dict |>
+        keys .|>
+        key -> transform!(
+            movie_metadata,
+            :,
+            key => (col -> col .|> each -> if ismissing(each)
+                Dict[key]
+            else
+                each
+            end) => key,
+        )
+    end
+    
+    function join_compine()
+        ["lab1/julia/file/4ReaderInformation.csv", "lab1/julia/file/4ReaderRentRecode.csv"] .|>
+        CSV.File .|>
+        DataFrame |>
+        dates -> begin
+            println(dates...)
+            innerjoin(dates..., on = :num) |>
+            file -> begin
+                file |> println
+                CSV.write("lab1/julia/file/join.csv", file)
+            end
+        end
+    end
+    
+    function self_pca()
+        mat = "lab1/julia/file/5iris.csv" |> CSV.File |> DataFrame
+        gp = groupby(mat, :Species)
+        names = [:Sepal_length, :Sepal_width, :Petal_length, :Petal_width, :Species]
+        @df gp[1] plot(
+            :Sepal_length,
+            :Sepal_width,
+            :Petal_length,
+            zcolor = reverse(:Petal_width),
+            m = (10, 0.8, :blues, Plots.stroke(0)),
+            fontfamily = "Yahei",
+            xlabel = "Sepal_length",
+            ylabel = "Sepal_width",
+            zlabel = "Petal_length",
+            title = "山鸢尾",
+            label = "山鸢尾",
+            w = 0,
+        )
+        @df gp[2] plot(
+            :Sepal_length,
+            :Sepal_width,
+            :Petal_length,
+            zcolor = reverse(:Petal_width),
+            m = (10, 0.8, :blues, Plots.stroke(0)),
+            fontfamily = "Yahei",
+            xlabel = "Sepal_length",
+            ylabel = "Sepal_width",
+            zlabel = "Petal_length",
+            title = "变色鸢尾",
+            label = "变色鸢尾",
+            w = 0,
+        )
+        @df gp[3] plot(
+            :Sepal_length,
+            :Sepal_width,
+            :Petal_length,
+            zcolor = reverse(:Petal_width),
+            m = (10, 0.8, :blues, Plots.stroke(0)),
+            fontfamily = "Yahei",
+            xlabel = "Sepal_length",
+            ylabel = "Sepal_width",
+            zlabel = "Petal_length",
+            title = "维吉尼亚鸢尾",
+            label = "维吉尼亚鸢尾",
+            w = 0,
+        )
+        data = copy(mat)
+        data = select!(data, Not([:Species])) |> Matrix 
+        (values, vectors) = data |> Statistics.cov |> eigen
+        p = last(sortperm(values), 2) |> x -> vectors[:, x]
+        data * p
+    end
+    
+    free();
+    draw_plot();
+    map_transform();
+    join_compine();
+    self_pca();
+    
 \end{lstlisting}
 \end{document}
 
