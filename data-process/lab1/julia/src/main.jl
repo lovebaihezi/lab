@@ -106,11 +106,11 @@ function map_transform()
     )
     dict |>
     keys .|>
-    key -> transform!(
+    key -> select!(
         movie_metadata,
         :,
         key => (col -> col .|> each -> if ismissing(each)
-            Dict[key]
+            dict[key]
         else
             each
         end) => key,
@@ -140,7 +140,7 @@ function self_pca()
         :Sepal_width,
         :Petal_length,
         zcolor = reverse(:Petal_width),
-        m = (10, 0.8, :blues, Plots.stroke(0)),
+        m = (10, 0.2, :blues, Plots.stroke(0)),
         fontfamily = "Yahei",
         xlabel = "Sepal_length",
         ylabel = "Sepal_width",
@@ -149,44 +149,53 @@ function self_pca()
         label = "山鸢尾",
         w = 0,
     )
-    @df gp[2] plot(
-        :Sepal_length,
-        :Sepal_width,
-        :Petal_length,
-        zcolor = reverse(:Petal_width),
-        m = (10, 0.8, :blues, Plots.stroke(0)),
-        fontfamily = "Yahei",
-        xlabel = "Sepal_length",
-        ylabel = "Sepal_width",
-        zlabel = "Petal_length",
-        title = "变色鸢尾",
-        label = "变色鸢尾",
-        w = 0,
-    )
-    @df gp[3] plot(
-        :Sepal_length,
-        :Sepal_width,
-        :Petal_length,
-        zcolor = reverse(:Petal_width),
-        m = (10, 0.8, :blues, Plots.stroke(0)),
-        fontfamily = "Yahei",
-        xlabel = "Sepal_length",
-        ylabel = "Sepal_width",
-        zlabel = "Petal_length",
-        title = "维吉尼亚鸢尾",
-        label = "维吉尼亚鸢尾",
-        w = 0,
-    )
+    # @df gp[2] plot(
+    #     :Sepal_length,
+    #     :Sepal_width,
+    #     :Petal_length,
+    #     zcolor = reverse(:Petal_width),
+    #     m = (10, 0.8, :blues, Plots.stroke(0)),
+    #     fontfamily = "Yahei",
+    #     xlabel = "Sepal_length",
+    #     ylabel = "Sepal_width",
+    #     zlabel = "Petal_length",
+    #     title = "变色鸢尾",
+    #     label = "变色鸢尾",
+    #     w = 0,
+    # )
+    # @df gp[3] plot(
+    #     :Sepal_length,
+    #     :Sepal_width,
+    #     :Petal_length,
+    #     zcolor = reverse(:Petal_width),
+    #     m = (10, 0.8, :blues, Plots.stroke(0)),
+    #     fontfamily = "Yahei",
+    #     xlabel = "Sepal_length",
+    #     ylabel = "Sepal_width",
+    #     zlabel = "Petal_length",
+    #     title = "维吉尼亚鸢尾",
+    #     label = "维吉尼亚鸢尾",
+    #     w = 0,
+    # )
     data = copy(mat)
-    data = select!(data, Not([:Species])) |> Matrix 
+    data = select!(data, Not([:Species]))
+    transform!(
+        data,
+        :,
+        :Sepal_length => (x -> x .- mean(x)) => :Sepal_length,
+        :Sepal_width => (x -> x .- mean(x)) =>:Sepal_width,
+        :Petal_length => (x -> x .- mean(x)) =>:Petal_length,
+        :Petal_width => (x -> x .- mean(x)) =>:Petal_width,
+    )
+    data = data |> Matrix
     (values, vectors) = data |> Statistics.cov |> eigen
     # sortperm 会将元素从小到大排序
     p = last(sortperm(values), 2) |> x -> vectors[:, x]
     data * p
 end
 
-free();
-draw_plot();
-map_transform();
-join_compine();
-self_pca();
+# free();
+# draw_plot();
+# map_transform();
+# join_compine();
+# self_pca();
