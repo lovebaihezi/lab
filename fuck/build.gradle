@@ -1,0 +1,47 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.0-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.asciidoctor.convert' version '1.5.8'
+    id 'java'
+    id 'org.springframework.experimental.aot' version '0.11.0-SNAPSHOT'
+}
+
+group = 'com.lqxc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    maven { url 'https://repo.spring.io/snapshot' }
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'io.micrometer:micrometer-registry-influx'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+}
+
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+bootBuildImage {
+    builder = 'paketobuildpacks/builder:tiny'
+    environment = ['BP_NATIVE_IMAGE': 'true']
+}
