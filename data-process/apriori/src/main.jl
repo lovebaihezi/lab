@@ -10,8 +10,6 @@ main:
 # support(X => Y) = count(X ∪ Y) / |D|
 # confidence(X => Y) = count(X ∪ Y) / count(X)
 
-data = [[:A, :C, :D], [:B, :C, :E], [:A, :B, :C, :E], [:B, :E]]
-
 function rules(
     dicts::Vector{Dict{Set{T},Float64}},
     support::Dict{Set{T}, Float64},
@@ -98,7 +96,17 @@ function apriori(
     D, rules(D, support, ς)
 end
 
-apriori(data; ε = 0.5) .|>
+data = readlines("files/groceries.csv") .|> s -> split(s, ",")
+
+apriori(data; ε = 0.03, ς=0.2) .|> 
+[
+    dicts -> dicts .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
+    dict -> dict |> keys .|> key -> println(key, " -> ", dict[key])
+]
+
+data = readlines("files/data1.txt") .|> s -> split(s, ";")
+
+apriori(data ; ε = 0.5) .|> 
 [
     dicts -> dicts .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
     dict -> dict |> keys .|> key -> println(key, " -> ", dict[key])

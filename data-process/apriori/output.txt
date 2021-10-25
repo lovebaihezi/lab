@@ -1,0 +1,101 @@
+Set(SubString{String}["bottled water"]) -> 0.11052364006100661
+Set(SubString{String}["newspapers"]) -> 0.07981698017285206
+Set(SubString{String}["bottled beer"]) -> 0.08052872394509406
+Set(SubString{String}["chocolate"]) -> 0.04961870869344179
+Set(SubString{String}["whole milk"]) -> 0.25551601423487547
+Set(SubString{String}["pastry"]) -> 0.08896797153024912
+Set(SubString{String}["whipped/sour cream"]) -> 0.07168276563294357
+Set(SubString{String}["shopping bags"]) -> 0.09852567361464158
+Set(SubString{String}["rolls/buns"]) -> 0.18393492628368074
+Set(SubString{String}["frankfurter"]) -> 0.058973055414336555
+Set(SubString{String}["hygiene articles"]) -> 0.03294356888662939
+Set(SubString{String}["sugar"]) -> 0.03385866802236909
+Set(SubString{String}["frozen vegetables"]) -> 0.04809354346720895
+Set(SubString{String}["UHT-milk"]) -> 0.03345195729537367
+Set(SubString{String}["chicken"]) -> 0.04290798169801729
+Set(SubString{String}["waffles"]) -> 0.038434163701067614
+Set(SubString{String}["beef"]) -> 0.05246568378240976
+Set(SubString{String}["pip fruit"]) -> 0.07564819522114896
+Set(SubString{String}["tropical fruit"]) -> 0.10493136756481952
+Set(SubString{String}["specialty chocolate"]) -> 0.03040162684290798
+Set(SubString{String}["margarine"]) -> 0.05856634468734113
+Set(SubString{String}["citrus fruit"]) -> 0.08276563294356888
+Set(SubString{String}["fruit/vegetable juice"]) -> 0.0722928317234367
+Set(SubString{String}["coffee"]) -> 0.05805795627859685
+Set(SubString{String}["salty snack"]) -> 0.03782409761057448
+Set(SubString{String}["onions"]) -> 0.031011692933401117
+Set(SubString{String}["brown bread"]) -> 0.06487036095577021
+Set(SubString{String}["hamburger meat"]) -> 0.033248601931875954
+Set(SubString{String}["other vegetables"]) -> 0.1934926283680732
+Set(SubString{String}["long life bakery product"]) -> 0.037417386883579054
+Set(SubString{String}["sausage"]) -> 0.09395017793594305
+Set(SubString{String}["berries"]) -> 0.033248601931875954
+Set(SubString{String}["cream cheese"]) -> 0.03965429588205389
+Set(SubString{String}["root vegetables"]) -> 0.10899847483477376
+Set(SubString{String}["soda"]) -> 0.17437722419928825
+Set(SubString{String}["napkins"]) -> 0.05236400610066091
+Set(SubString{String}["butter"]) -> 0.05541433655312659
+Set(SubString{String}["dessert"]) -> 0.03711235383833249
+Set(SubString{String}["canned beer"]) -> 0.07768174885612608
+Set(SubString{String}["pork"]) -> 0.05765124555160142
+Set(SubString{String}["curd"]) -> 0.05327910523640061
+Set(SubString{String}["white bread"]) -> 0.042094560244026434
+Set(SubString{String}["domestic eggs"]) -> 0.06344687341128623
+Set(SubString{String}["yogurt"]) -> 0.13950177935943062
+Set(SubString{String}["pip fruit", "whole milk"]) -> 0.030096593797661414
+Set(SubString{String}["other vegetables", "yogurt"]) -> 0.04341637010676157
+Set(SubString{String}["soda", "rolls/buns"]) -> 0.03833248601931876
+Set(SubString{String}["soda", "whole milk"]) -> 0.040061006609049314
+Set(SubString{String}["yogurt", "rolls/buns"]) -> 0.03436705643111337
+Set(SubString{String}["other vegetables", "rolls/buns"]) -> 0.042602948652770714
+Set(SubString{String}["whole milk", "rolls/buns"]) -> 0.05663446873411286
+Set(SubString{String}["other vegetables", "tropical fruit"]) -> 0.035892221657346214
+Set(SubString{String}["whole milk", "bottled water"]) -> 0.03436705643111337
+Set(SubString{String}["whole milk", "root vegetables"]) -> 0.048906964921199794
+Set(SubString{String}["whipped/sour cream", "whole milk"]) -> 0.032231825114387394
+Set(SubString{String}["citrus fruit", "whole milk"]) -> 0.030503304524656837
+Set(SubString{String}["whole milk", "yogurt"]) -> 0.05602440264361973
+Set(SubString{String}["other vegetables", "root vegetables"]) -> 0.047381799694966954
+Set(SubString{String}["other vegetables", "soda"]) -> 0.032740213523131674
+Set(SubString{String}["pastry", "whole milk"]) -> 0.033248601931875954
+Set(SubString{String}["sausage", "rolls/buns"]) -> 0.030604982206405694
+Set(SubString{String}["tropical fruit", "whole milk"]) -> 0.04229791560752415
+Set(SubString{String}["other vegetables", "whole milk"]) -> 0.07483477376715811
+Set(SubString{String}["tropical fruit"]) => Set(SubString{String}["other vegetables"]) -> (0.34205426356589147, 1.7677896385551983)
+Set(SubString{String}["rolls/buns"]) => Set(SubString{String}["whole milk"]) -> (0.30790491984521834, 1.2050317893663836)
+Set(SubString{String}["other vegetables"]) => Set(SubString{String}["whole milk"]) -> (0.38675775091960063, 1.5136340948246207)
+Set(SubString{String}["root vegetables"]) => Set(SubString{String}["whole milk"]) -> (0.44869402985074625, 1.7560309524799398)
+Set(SubString{String}["yogurt"]) => Set(SubString{String}["whole milk"]) -> (0.40160349854227406, 1.5717351405345266)
+Set(SubString{String}["other vegetables"]) => Set(SubString{String}["root vegetables"]) -> (0.24487651077246453, 2.2466049285887957)
+Set(SubString{String}["bottled water"]) => Set(SubString{String}["whole milk"]) -> (0.31094756209751606, 1.2169396232507244)
+Set(SubString{String}["soda"]) => Set(SubString{String}["whole milk"]) -> (0.22973760932944606, 0.8991123707740158)
+Set(SubString{String}["whipped/sour cream"]) => Set(SubString{String}["whole milk"]) -> (0.449645390070922, 1.759754242478121)
+Set(SubString{String}["rolls/buns"]) => Set(SubString{String}["soda"]) -> (0.2084024322830293, 1.1951241524802292)
+Set(SubString{String}["citrus fruit"]) => Set(SubString{String}["whole milk"]) -> (0.36855036855036855, 1.4423767905662055)
+Set(SubString{String}["pastry"]) => Set(SubString{String}["whole milk"]) -> (0.3737142857142857, 1.4625865499403103)
+Set(SubString{String}["rolls/buns"]) => Set(SubString{String}["other vegetables"]) -> (0.23161967938087338, 1.1970465300635258)
+Set(SubString{String}["other vegetables"]) => Set(SubString{String}["yogurt"]) -> (0.22438255386232264, 1.6084565723294044)
+Set(SubString{String}["other vegetables"]) => Set(SubString{String}["rolls/buns"]) -> (0.22017866526537044, 1.1970465300635258)
+Set(SubString{String}["tropical fruit"]) => Set(SubString{String}["whole milk"]) -> (0.40310077519379844, 1.5775949558420244)
+Set(SubString{String}["root vegetables"]) => Set(SubString{String}["other vegetables"]) -> (0.43470149253731344, 2.2466049285887952)
+Set(SubString{String}["yogurt"]) => Set(SubString{String}["other vegetables"]) -> (0.3112244897959184, 1.6084565723294046)
+Set(SubString{String}["sausage"]) => Set(SubString{String}["rolls/buns"]) -> (0.3257575757575758, 1.7710479588589043)
+Set(SubString{String}["yogurt"]) => Set(SubString{String}["rolls/buns"]) -> (0.2463556851311953, 1.339363274331291)
+Set(SubString{String}["soda"]) => Set(SubString{String}["rolls/buns"]) -> (0.21982507288629738, 1.1951241524802292)
+Set(SubString{String}["whole milk"]) => Set(SubString{String}["rolls/buns"]) -> (0.22164743334659767, 1.2050317893663836)
+Set(SubString{String}["whole milk"]) => Set(SubString{String}["yogurt"]) -> (0.21925984878631116, 1.5717351405345263)
+Set(SubString{String}["whole milk"]) => Set(SubString{String}["other vegetables"]) -> (0.2928770393951452, 1.5136340948246205)
+Set(SubString{String}["pip fruit"]) => Set(SubString{String}["whole milk"]) -> (0.3978494623655914, 1.5570431605115762)
+Set(SubString{String}["2"]) -> 0.7
+Set(SubString{String}[""]) -> 1.0
+Set(SubString{String}["1"]) -> 0.6
+Set(SubString{String}["3"]) -> 0.6
+Set(SubString{String}["2", ""]) -> 0.7
+Set(SubString{String}["1", ""]) -> 0.6
+Set(SubString{String}["", "3"]) -> 0.6
+Set(SubString{String}[""]) => Set(SubString{String}["1"]) -> (0.6, 1.0)
+Set(SubString{String}["1"]) => Set(SubString{String}[""]) -> (1.0, 1.0)
+Set(SubString{String}[""]) => Set(SubString{String}["3"]) -> (0.6, 1.0)
+Set(SubString{String}["2"]) => Set(SubString{String}[""]) -> (1.0, 1.0)
+Set(SubString{String}["3"]) => Set(SubString{String}[""]) -> (1.0, 1.0)
+Set(SubString{String}[""]) => Set(SubString{String}["2"]) -> (0.7, 1.0)

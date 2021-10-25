@@ -11,7 +11,7 @@ using LinearAlgebra
 
 function free()
     quality =
-        "lab1/julia/file/xian_guangdian.csv" |>
+        "file/xian_guangdian.csv" |>
         CSV.File |>
         DataFrame |>
         data ->
@@ -48,11 +48,11 @@ function free()
         :user_level,
         :quantity,
         label = "$kind",
-    ) |> fig -> savefig(fig, "lab1/julia/images/first_$kind")
+    ) |> fig -> savefig(fig, "images/first_$kind")
 end
 
 function draw_plot()
-    file_path = "lab1/julia/file/xian_beijing_salary.xlsx"
+    file_path = "file/xian_beijing_salary.xlsx"
     salarys = DataFrame(XLSX.readdata(file_path, "Sheet1!C3:D14"), :auto) .|> identity
     salary = [salarys.x1, salarys.x2]
 
@@ -64,15 +64,15 @@ function draw_plot()
 
     violin(["Xi'an"], salarys.x1, label = "Xi'an")
     violin!(["Beijing"], salarys.x2, label = "Beijing") |>
-    fig -> savefig(fig, "lab1/julia/images/violin")
+    fig -> savefig(fig, "images/violin")
     boxplot(["Xi'an"], salarys.x1, label = "Xi'an")
     boxplot!(["Beijing"], salarys.x2, label = "Beijing") |>
-    fig -> savefig(fig, "lab1/julia/images/box")
+    fig -> savefig(fig, "images/box")
 
 end
 
 function map_transform()
-    file_path = "lab1/julia/file/3movie_metadata.csv"
+    file_path = "file/3movie_metadata.csv"
     movie_metadata = file_path |> CSV.File |> DataFrame
     dropmissing!(movie_metadata, :director_name)
     dict = Dict(
@@ -118,7 +118,7 @@ function map_transform()
 end
 
 function join_compine()
-    ["lab1/julia/file/4ReaderInformation.csv", "lab1/julia/file/4ReaderRentRecode.csv"] .|>
+    ["file/4ReaderInformation.csv", "file/4ReaderRentRecode.csv"] .|>
     CSV.File .|>
     DataFrame |>
     dates -> begin
@@ -126,20 +126,20 @@ function join_compine()
         innerjoin(dates..., on = :num) |>
         file -> begin
             file |> println
-            CSV.write("lab1/julia/file/join.csv", file)
+            CSV.write("file/join.csv", file)
         end
     end
 end
 
 function self_pca()
-    mat = "lab1/julia/file/5iris.csv" |> CSV.File |> DataFrame
+    mat = "file/5iris.csv" |> CSV.File |> DataFrame
     gp = groupby(mat, :Species)
     names = [:Sepal_length, :Sepal_width, :Petal_length, :Petal_width, :Species]
     @df gp[1] plot(
         :Sepal_length,
         :Sepal_width,
         :Petal_length,
-        zcolor = reverse(:Petal_width),
+        zcolor = :Petal_width,
         m = (10, 0.2, :blues, Plots.stroke(0)),
         fontfamily = "Yahei",
         xlabel = "Sepal_length",
@@ -149,34 +149,34 @@ function self_pca()
         label = "山鸢尾",
         w = 0,
     )
-    # @df gp[2] plot(
-    #     :Sepal_length,
-    #     :Sepal_width,
-    #     :Petal_length,
-    #     zcolor = reverse(:Petal_width),
-    #     m = (10, 0.8, :blues, Plots.stroke(0)),
-    #     fontfamily = "Yahei",
-    #     xlabel = "Sepal_length",
-    #     ylabel = "Sepal_width",
-    #     zlabel = "Petal_length",
-    #     title = "变色鸢尾",
-    #     label = "变色鸢尾",
-    #     w = 0,
-    # )
-    # @df gp[3] plot(
-    #     :Sepal_length,
-    #     :Sepal_width,
-    #     :Petal_length,
-    #     zcolor = reverse(:Petal_width),
-    #     m = (10, 0.8, :blues, Plots.stroke(0)),
-    #     fontfamily = "Yahei",
-    #     xlabel = "Sepal_length",
-    #     ylabel = "Sepal_width",
-    #     zlabel = "Petal_length",
-    #     title = "维吉尼亚鸢尾",
-    #     label = "维吉尼亚鸢尾",
-    #     w = 0,
-    # )
+    @df gp[2] plot(
+        :Sepal_length,
+        :Sepal_width,
+        :Petal_length,
+        zcolor = :Petal_width,
+        m = (10, 0.2, :blues, Plots.stroke(0)),
+        fontfamily = "Yahei",
+        xlabel = "Sepal_length",
+        ylabel = "Sepal_width",
+        zlabel = "Petal_length",
+        title = "变色鸢尾",
+        label = "变色鸢尾",
+        w = 0,
+    )
+    @df gp[3] plot(
+        :Sepal_length,
+        :Sepal_width,
+        :Petal_length,
+        zcolor = :Petal_width,
+        m = (10, 0.2, :blues, Plots.stroke(0)),
+        fontfamily = "Yahei",
+        xlabel = "Sepal_length",
+        ylabel = "Sepal_width",
+        zlabel = "Petal_length",
+        title = "维吉尼亚鸢尾",
+        label = "维吉尼亚鸢尾",
+        w = 0,
+    )
     data = copy(mat)
     data = select!(data, Not([:Species]))
     transform!(
@@ -194,8 +194,8 @@ function self_pca()
     data * p
 end
 
-# free();
-# draw_plot();
-# map_transform();
-# join_compine();
-# self_pca();
+free();
+draw_plot();
+map_transform();
+join_compine();
+self_pca();
