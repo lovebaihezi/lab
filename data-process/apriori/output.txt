@@ -87,15 +87,5 @@ Set(SubString{String}["whole milk"]) => Set(SubString{String}["yogurt"]) -> (0.2
 Set(SubString{String}["whole milk"]) => Set(SubString{String}["other vegetables"]) -> (0.2928770393951452, 1.5136340948246205)
 Set(SubString{String}["pip fruit"]) => Set(SubString{String}["whole milk"]) -> (0.3978494623655914, 1.5570431605115762)
 Set(SubString{String}["2"]) -> 0.7
-Set(SubString{String}[""]) -> 1.0
 Set(SubString{String}["1"]) -> 0.6
 Set(SubString{String}["3"]) -> 0.6
-Set(SubString{String}["2", ""]) -> 0.7
-Set(SubString{String}["1", ""]) -> 0.6
-Set(SubString{String}["", "3"]) -> 0.6
-Set(SubString{String}[""]) => Set(SubString{String}["1"]) -> (0.6, 1.0)
-Set(SubString{String}["1"]) => Set(SubString{String}[""]) -> (1.0, 1.0)
-Set(SubString{String}[""]) => Set(SubString{String}["3"]) -> (0.6, 1.0)
-Set(SubString{String}["2"]) => Set(SubString{String}[""]) -> (1.0, 1.0)
-Set(SubString{String}["3"]) => Set(SubString{String}[""]) -> (1.0, 1.0)
-Set(SubString{String}[""]) => Set(SubString{String}["2"]) -> (0.7, 1.0)

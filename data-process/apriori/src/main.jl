@@ -20,7 +20,6 @@ function rules(
         for x ∈ 1:i-1
             for set ∈ dicts[x] |> keys
                 for n_set ∈ dicts[i] |> keys
-                    # set => n_set
                     if set ⊆ n_set
                         diff = setdiff(n_set, set)
                         # set ∪ diff = n_set
@@ -55,7 +54,7 @@ function scan(
     end
     len = data |> length # Int, get data set size
     for (key, value) ∈ dict # Vector{T} => Float64, cal each sets support%
-        support = value /len
+        support = value / len
         dict[key] = support
     end
     dict |> keys .|> key -> if dict[key] < ε # remove set which support less than ε
@@ -96,18 +95,16 @@ function apriori(
     D, rules(D, support, ς)
 end
 
-data = readlines("files/groceries.csv") .|> s -> split(s, ",")
+# data = readlines("files/groceries.csv") .|> s -> split(s, ",")
 
-apriori(data; ε = 0.03, ς=0.2) .|> 
+# apriori(data; ε = 0.03, ς = 0.2) .|> 
+# [
+#    dicts -> dicts .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
+#     dict -> dict |> keys .|> key -> println(key, " -> ", dict[key])
+# ]
+apriori([[:A, :C, :D], [:B, :C, :E], [:A, :B, :C, :E], [:B, :E]]; ε = 0.5) .|>
 [
-    dicts -> dicts .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
+    dict -> dict .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
     dict -> dict |> keys .|> key -> println(key, " -> ", dict[key])
 ]
 
-data = readlines("files/data1.txt") .|> s -> split(s, ";")
-
-apriori(data ; ε = 0.5) .|> 
-[
-    dicts -> dicts .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
-    dict -> dict |> keys .|> key -> println(key, " -> ", dict[key])
-]

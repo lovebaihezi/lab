@@ -1,0 +1,5 @@
+\babel@toc {UKenglish}{}
+\contentsline {section}{\numberline {1}概述}{4}{section.1}%
+\contentsline {section}{\numberline {2}频繁项集生成}{5}{section.2}%
+\contentsline {section}{\numberline {3}关联规则生成}{7}{section.3}%
+\contentsline {section}{\numberline {4}代码}{9}{section.4}%
