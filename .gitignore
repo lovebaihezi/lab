@@ -7,3 +7,16 @@
 **/**/**\.log
 data\-process/lab1/julia/\_\_latexindent_temp.tex
 data-process/lab2/__latexindent_temp.tex
+**/**/\.ccls*
+\.ccls*
+**/**/build
+**/**/*o
+**/**/*bin
+**/**/*\.make
+**/**/*\.cmake
+**/**/*\.out
+**/**/Makefile2
+**/**/check_cache
+**/**/*\.marks
+**/**/target
+

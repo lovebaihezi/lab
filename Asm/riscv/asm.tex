@@ -1,0 +1,178 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage[british,UKenglish]{babel}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{fancyref}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{scrextend}
+\usepackage{setspace}
+\usepackage{xargs}
+\usepackage{multicol}
+\usepackage{nameref}
+\usepackage{xeCJK}
+\usepackage{sectsty}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[procnames]{listings}
+\usepackage{appendix}
+\usepackage{listings}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\hypersetup{colorlinks=true, linkcolor=black}
+\interfootnotelinepenalty=10000
+
+\newcommand{\cleancode}[1]{\begin{addmargin}[2em]{2em}\texttt{\textcolor{cleanOrange}{#1}}\end{addmargin}}
+\newcommand{\cleanstyle}[1]{\text{\textcolor{cleanOrange}{\texttt{#1}}}}
+
+\setCJKmainfont{Source Han Sans CN Medium}
+
+\usepackage[colorinlistoftodos,prependcaption,textsize=footnotesize]{todonotes}
+\newcommandx{\commred}[2][1=]{\textcolor{Red}
+{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}}
+\newcommandx{\commblue}[2][1=]{\textcolor{Blue}
+{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}}
+\newcommandx{\commgreen}[2][1=]{\textcolor{OliveGreen}{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}}
+\newcommandx{\commpurp}[2][1=]{\textcolor{Plum}{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}}
+
+\def\code#1{{\tt #1}}
+
+\def\note#1{\noindent{\bf [Note: #1]}}
+
+\makeatletter
+%% The "\@seccntformat" command is an auxiliary command
+%% (see pp. 26f. of 'The LaTeX Companion,' 2nd. ed.)
+\def\@seccntformat#1{\@ifundefined{#1@cntformat}%
+   {\csname the#1\endcsname\quad}  % default
+   {\csname #1@cntformat\endcsname}% enable individual control
+}
+\let\oldappendix\appendix %% save current definition of \appendix
+\renewcommand\appendix{%
+    \oldappendix\newcommand{\section@cntformat}{\appendixname~\thesection\quad}
+}
+\makeatother
+
+\lstdefinelanguage{Julia}%
+  {morekeywords={abstract,break,case,catch,const,continue,do,else,elseif,%
+      end,export,false,for,function,immutable,import,importall,if,in,%
+      macro,module,otherwise,quote,return,switch,true,try,type,typealias,%
+      using,while,|>, |>, =>, ->},%
+   sensitive=true,%
+   morecomment=[l]\#,%
+   morecomment=[n]{\#=}{=\#},%
+   morestring=[s]{"}{"},%
+   morestring=[m]{'}{'},%
+}[keywords,comments,strings]%
+
+\lstset{%
+    language         = Julia,
+    basicstyle       = \fontfamily{Fira Code},
+    keywordstyle     = \bfseries\color{blue},
+    stringstyle      = \color{magenta},
+    commentstyle     = \color{ForestGreen},
+    showstringspaces = false,
+}
+\lstdefinelanguage{Nasm}%
+  {morekeywords={mov,eax,ebx,cmp,je,jmp,ret,add,sub,global},%
+   sensitive=true,%
+   morecomment=[l]\;\;,%
+   morestring=[s]{"}{"},%
+   morestring=[m]{'}{'},%
+}[keywords,comments,strings]%
+
+\lstset{%
+    language         = Nasm,
+    basicstyle       = \fontfamily{Fira Code},
+    keywordstyle     = \bfseries\color{blue},
+    stringstyle      = \color{magenta},
+    commentstyle     = \color{green},
+    showstringspaces = false,
+}
+\lstset{frame=, basicstyle={\footnotesize\ttfamily}}
+
+
+
+\graphicspath{ {images/} }
+\usepackage{ctex}
+\usepackage{fontspec}
+\setmonofont[
+  Contextuals={Alternate}
+]{Fira Code}
+
+\begin{document}
+\renewcommand{\contentsname}{目\ 录}
+\renewcommand{\appendixname}{附录}
+\renewcommand{\appendixpagename}{附录}
+\renewcommand{\refname}{参考文献} 
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\today}{\year\month\day}
+
+\title{{\Huge 计算机组成原理实验报告{\large\linebreak\\}}{\Large 实验一: 算数逻辑运算实验\linebreak\linebreak}}
+\author{\\姓\ 名:柴\ 博\ 文\\
+学\ 号: 04194012\\
+班\ 号: 大数据1901\\\\
+计算机组成原理\\
+(秋季, 2021)\\\\
+西安邮电大学\\
+计算机学院\\
+数据科学与大数据专业}
+\date{\today}
+\newpage
+
+\begin{center}
+{\Large\bf{摘\ 要\\}}
+\end{center}
+
+本次实验代码均可以在\href{https://github.com/lovebaihezi/lab/tree/main/Asm/riscv}{github仓库}下找到.
+
+本次实验使用Nasm 语言,通过Nasm进行编译,通过C编译器进行链接编译至可执行文件
+
+\newpage
+\begin{center}
+\tableofcontents\label{c}
+\end{center}
+
+\newpage
+
+\section{实验过程}\label{overview}
+\subsection{实验所用指令}
+首先是本次实验使用到的指令:
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|c}
+    指令 & 描述 \\hline
+    mov  & 将,后的值移入前面的存储区当中\\
+    add  & 将前后两个的值之和移入,前面的存储区当中\\
+    cmp  & 比较,两侧的数字,将结果存储在比较寄存器当中\\
+    jle  & 如果比较寄存器当中的结果为小于等于,则跳转至标签处\\
+    main & 标准C程序入口\\
+  \end{tabular}
+\end{table}
+\begin{lstlisting}{lang=Nasm}
+global main
+
+;; 1 2 3 4 5 6 7  8  9  10
+;; 1 1 2 3 5 8 13 21 34 55
+
+main:
+    mov eax, 1;; 将EAX寄存器的值设为1
+    mov ebx, 1
+    mov ecx, 9
+fib:
+    cmp ecx, 1;;比较ecx中的值和1比谁大
+    je end;;相等就推出
+    mov edx, ebx;;edxu用来交换eax和ebx的值
+    add ebx, eax
+    mov eax, edx
+    sub ecx, 1
+    jmp fib;;形成循环
+end:
+    mov eax, ebx;;循环终止 将得到的结果移给eax然后程序退出
+    ret
+
+\end{lstlisting}
+\end{document}
