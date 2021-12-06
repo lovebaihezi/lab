@@ -102,7 +102,17 @@ end
 #    dicts -> dicts .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
 #     dict -> dict |> keys .|> key -> println(key, " -> ", dict[key])
 # ]
-apriori([[:A, :C, :D], [:B, :C, :E], [:A, :B, :C, :E], [:B, :E]]; ε = 0.5) .|>
+apriori([
+    [:I1, :I2, :I5], 
+    [:I2, :I4], 
+    [:I2, :I3], 
+    [:I1, :I2, :I4], 
+    [:I1, :I3], 
+    [:I2, :I3], 
+    [:I1, :I3], 
+    [:I1, :I2, :I3, :I5], 
+    [:I1, :I2, :I3]
+]; ε = 0.22,ς = 0.7) .|>
 [
     dict -> dict .|> dict -> dict |> keys .|> key -> println(key, " -> ", dict[key]),
     dict -> dict |> keys .|> key -> println(key, " -> ", dict[key])

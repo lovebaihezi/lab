@@ -19,4 +19,5 @@ data-process/lab2/__latexindent_temp.tex
 **/**/check_cache
 **/**/*\.marks
 **/**/target
+**/**/cmake-build-debug/
 

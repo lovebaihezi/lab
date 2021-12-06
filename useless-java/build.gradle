@@ -21,14 +21,14 @@ ext {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
-    implementation 'org.springframework.boot:spring-boot-starter-websocket'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'io.micrometer:micrometer-registry-influx'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'io.projectreactor:reactor-test'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket:2.5.6'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.6'
+    runtimeOnly 'io.micrometer:micrometer-registry-influx:1.7.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
+    testImplementation 'io.projectreactor:reactor-test:3.4.11'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE'
 }
 
 test {
