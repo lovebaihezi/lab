@@ -1,0 +1,43 @@
+outlook 0.24674981977443933 index: 0
+Rain false
+new indexes: [3 4 5 9 13 ]
+new attributes: { wind => 3  humidity => 2  temperate => 1   }
+wind 0.4199730940219749 index: 3
+Strong false
+new indexes: [4 5 13 ]
+new attributes: { humidity => 2  temperate => 1   }
+humidity 0.2516291673878229 index: 2
+High true
+Normal false
+new indexes: [4 5 ]
+new attributes: { temperate => 1   }
+temperate 0 index: 1
+Weak true
+Overcast true
+Sunny false
+new indexes: [0 1 7 8 10 ]
+new attributes: { temperate => 1   }
+temperate 0.5709505944546686 index: 1
+Cool true
+Mild false
+new indexes: [7 10 ]
+new attributes: {  }
+Hot true
+--outlook--
+ <Sunny>  <Overcast>  <Rain> 
+|>===<|
+--temperate--
+ <Hot>  <Cool> 
+|>===<|
+\\Overcast//
+--wind--
+ <Weak>  <Strong> 
+|>===<|
+\\Hot//
+\\Cool//
+\\Weak//
+--humidity--
+ <Normal>  <High> 
+|>===<|
+\\//
+\\High//

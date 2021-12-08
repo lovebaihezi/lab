@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.20)
+# project(ID3 CUDA)
+project(ID3 CXX)
+# set(CMAKE_CUDA_STANDARD 23)
+# set(CMAKE_CXX_STANDARD 23)
+add_compile_options(-std=c++2a)
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} fmt)
+# set_target_properties(ID3 PROPERTIES
+#        CUDA_SEPARABLE_COMPILATION ON)
