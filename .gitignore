@@ -21,3 +21,4 @@ data-process/lab2/__latexindent_temp.tex
 **/**/target
 **/**/cmake-build-debug/
 **/**/*.tar**
+**/**/*.docx
